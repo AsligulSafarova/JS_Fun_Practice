@@ -90,3 +90,4 @@ const minNum2 = (...nums) => {
 };
 
 console.log(minNum2(1, 2, 4));
+//11.
