@@ -76,18 +76,85 @@ const minNum = (...nums) => {
     return Math.min(...nums)
 };
 
-console.log(minNum(1, 2, 4));
+console.log(minNum(1, 2, 4));//1
 
 const minNum2 = (...nums) => {
-    let num = nums[0];
-    for (let i = 1; i <= nums.length - 1; i++) {
-        if (nums[i] >= num) {
-            return num
-        } else {
-            return num = nums[i]
+    let min = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] < min) {
+            min = nums[i];
         }
     }
+    return min;
+};
+const minNum3 = (...nums) => {
+    return nums.reduce((a, b) => a < b ? a : b)
+};
+console.log(minElem(1, 2, 4));//1
+
+console.log(minNum2(10, 20, 4));
+//11.Write a function max that is generalized for any amount of arguments
+
+const max = (...nums) => Math.max(...nums);
+console.log(max(1, 2, 4));
+
+const max1 = (...nums) => {
+    let maxElem = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] > maxElem) {
+            maxElem = nums[i]
+        }
+    }
+    return maxElem
+};
+console.log(max1(1, 2, 4));
+const maxElem = (...nums) => {
+    return nums.reduce((a, b) => a > b ? a : b)
+};
+console.log(maxElem(1, 2, 5));
+
+//12Write a function addRecurse that is the generalized add function but uses recursion
+
+const addRecurse = (...nums) => {
+    let a = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+        a += nums[i]
+    }
+    return a
+};
+console.log(addRecurse(1, 2, 4));
+
+const addRecurse2 = (...nums) => {
+    return nums.reduce((a, b) => a + b, 0)
+};
+console.log(addRecurse2(1, 2, 4));
+
+const addRecurse3 = (...nums) => {
+    let sum = 0;
+    for (const num of nums) {
+        sum += num
+    }
+    return sum
+}
+addRecurse3(1, 2, 4)
+
+//13Write a function not that takes a function and returns the negation of its result
+
+const isOdd = (x) => x % 2 === 1;
+const not = (func) => {
+    return (...args) => !func(...args);
 };
 
-console.log(minNum2(1, 2, 4));
-//11.
+const isEven = not(isOdd);
+
+console.log(isEven(1)); // Output: false
+console.log(isEven(2)); // Output: true
+//14 Write a function acc that takes a function and an initial value and returns a function that 
+//runs the initial function on each argument, accumulating the result
+
+const acc = (a, ...abd) => {
+    return abd.reduce((prev, item) => prev + item, a)
+
+
+}
+acc((1, 2, 3), 1)
